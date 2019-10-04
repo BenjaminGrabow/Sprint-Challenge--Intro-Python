@@ -8,7 +8,7 @@ class City:
     self.lon = lon
 
   def __str__(self):
-    return f"Name:{self.name}, lat:{self.lat}, lon:{self.lon}"
+    return f"{self.name}, {self.lat}, {self.lon}"
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -34,7 +34,7 @@ def cityreader(cities=[]):
 
   for index,another_list in enumerate(city_list):
     if index != 0:
-      cities.append(City(another_list[0], another_list[3], another_list[4]))    
+      cities.append(City(another_list[0], float(another_list[3]), float(another_list[4])))    
   return cities
 
 cityreader(cities)
@@ -74,30 +74,26 @@ for city in cities:
 
 # TODO Get latitude and longitude values from the user
 
-within = []
+lat_one = input("Give me your latidude value one")
+lat_two = input("Give me your latidude value two")
+lon_one = input("Give me your longitude value one")
+lon_two = input("Give me your longitude value two")
 
-user_lats = input("Give me your latidude values")
-user_lons = input("Give me your longitude values")
-
-def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[], within=[]):
+def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
+  within = []
   check_lat = [lat1, lat2]
   check_lat.sort()
   check_lon = [lon1, lon2]
   check_lon.sort()
 
   for city in cities:
-    if check_lat[0] <= float(city.lat.split(".")[0]) <= check_lat[1] and check_lon[0] <= float(city.lon.split(".")[0]) <= check_lon[1]:
+    if check_lat[0] <= city.lat <= check_lat[1] and check_lon[0] <= city.lon <= check_lon[1]:
       within.append(city)
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
   return within
 
-lats_values = user_lats.split(" ")
-lons_values = user_lons.split(" ")
 
-cityreader_stretch(float(lats_values[0]), float(lons_values[0]), float(lats_values[1]), float(lons_values[1]), cities, within)
-
-for city in within:
-  print(city)
+cityreader_stretch(float(lat_one), float(lon_one), float(lat_two), float(lon_two), cities)

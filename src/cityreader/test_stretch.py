@@ -85,6 +85,5 @@ class CityreaderTests(unittest.TestCase):
     for i in range(len(inp)):
       self.assertTrue(check_city(inp[i], expected[i]))
 
-
 if __name__ == '__main__':
   unittest.main()

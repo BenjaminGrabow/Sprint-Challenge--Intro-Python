@@ -19,7 +19,7 @@ class Airplane(FlightVehicle): # child of class FlightVehicle and Grandchild of 
 class Starship(FlightVehicle): # child of class FlightVehicle and Grandchild of Vehicle
   pass
 
-class GroundVehicle: #base class for class Car and Motorcycle and child of Vehicle
+class GroundVehicle(Vehicle): #base class for class Car and Motorcycle and child of Vehicle
   pass
 
 class Car(GroundVehicle): #Child of class GroundVehicle and Grandchild of Vehicle
